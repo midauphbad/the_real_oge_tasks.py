@@ -1,0 +1,40 @@
+import random
+
+def generate_oge_task5(mode='no test'):
+    assert(mode == 'test' or mode == 'no test')
+    if mode == 'test':
+        robot_name = 'Альфа'
+        start_number = 6
+        add_number = 1
+        multiply_number = 10
+        algorithm = '11211'
+    else:
+        robot_name = random.choice(['Альфа', 'Бета', 'Омега']) # можете добавить ещё букв
+        start_number = 6
+        add_number = random.randint(1, 10)
+        multiply_number = random.randint(2, 20)
+        algorithm = list('11111')
+        algorithm[random.randint(0, len(algorithm) - 1)] = '2'
+        algorithm = ''.join(algorithm)
+        print(algorithm)
+    # Здесь начинается код, который вам нужно написать
+    number = int(str(start_number)[:])
+    for i in range(len(algorithm)):
+        if algorithm[i] == '1':
+            number += add_number
+        else:
+            number *= multiply_number
+    task_text = f'У исполнителя {robot_name} две команды, которым присвоены'\
+        f' номера:\n\t1. прибавь {add_number};\n\t2. умножь на b\n\t(b'\
+        f' — неизвестное натуральное число; b ≥ 2).\nВыполняя первую из них, '\
+        f'{robot_name} увеличивает число на экране на {add_number}, а выполняя'\
+        f' вторую, умножает это число на b.\nПрограмма для исполнителя'\
+        f' {robot_name} — это последовательность номеров команд.\nИзвестно,'\
+        f' что программа {algorithm} переводит число {start_number} в число'\
+        f' {number}.\n\nОпределите значение b.\n'
+    # Здесь заканчивается код, который вам нужно написать
+    return task_text, str(multiply_number)
+
+task_text_random, task_answer_random = generate_oge_task5('test')
+print(task_text_random)
+print(task_answer_random
